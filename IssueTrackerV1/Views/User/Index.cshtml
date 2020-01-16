@@ -1,0 +1,31 @@
+﻿@model IEnumerable<IssueTrackerV1.Models.User>
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users</h2>
+@if (!Model.Any())
+{
+    <p>Dont have user assgined yet!</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>User</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(user.Name, "Details", "User", new {id = user.Id}, null)
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

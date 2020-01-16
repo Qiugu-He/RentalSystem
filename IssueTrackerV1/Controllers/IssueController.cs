@@ -10,25 +10,20 @@ namespace IssueTrackerV1.Controllers
 {
     public class IssueController : Controller
     {
-        // GET: Issue
-        public ActionResult Random()
+        public ViewResult Index()
         {
-            var issue = new Issue() {Name = "ToDo1"};
+            var issue = GetIssues();
 
-            var users = new List<User>
+            return View(issue);
+        }
+
+        private IEnumerable<Issue> GetIssues()
+        {
+            return new List<Issue>
             {
-                new User {Name = "User 1"},
-                new User {Name = "User 2"}
-                
+                new Issue {Id = 1, Name = "To-Do-1"},
+                new Issue {Id = 2, Name = "To-Do-2"}
             };
-
-            var viewModel = new RandomIssueViewModel
-            {
-                Issue = issue,
-                Users = users
-            };
-
-            return View(viewModel);
         }
     }
 }

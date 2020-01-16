@@ -1,0 +1,25 @@
+﻿@model IEnumerable<IssueTrackerV1.Models.Issue>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Issues</h2>
+<table class=" table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Issue</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var issue in Model)
+        {
+            <tr>
+                <td>@issue.Name</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
