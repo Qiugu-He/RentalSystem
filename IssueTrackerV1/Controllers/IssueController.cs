@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IssueTrackerV1.Models;
+using IssueTrackerV1.ViewModels;
 
 namespace IssueTrackerV1.Controllers
 {
@@ -14,7 +15,20 @@ namespace IssueTrackerV1.Controllers
         {
             var issue = new Issue() {Name = "ToDo1"};
 
-            return View(issue);
+            var users = new List<User>
+            {
+                new User {Name = "User 1"},
+                new User {Name = "User 2"}
+                
+            };
+
+            var viewModel = new RandomIssueViewModel
+            {
+                Issue = issue,
+                Users = users
+            };
+
+            return View(viewModel);
         }
     }
 }
