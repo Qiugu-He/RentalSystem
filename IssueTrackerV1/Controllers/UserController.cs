@@ -9,17 +9,28 @@ namespace IssueTrackerV1.Controllers
 {
     public class UserController : Controller
     {
-        // GET: User
-        public ActionResult Index()
+        private ApplicationDbContext _context;
+
+        public UserController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+        public ViewResult Index()
         {   
-            var users = GetUsers();
+            var users = _context.Users.ToList();
             return View(users);
         }
 
 
         public ActionResult Details(int id)
         {
-            var user = GetUsers().SingleOrDefault(c => c.Id == id);
+            var user = _context.Users.SingleOrDefault(c => c.Id == id);
 
             if (user == null)
             {
@@ -28,15 +39,5 @@ namespace IssueTrackerV1.Controllers
 
             return View(user);
         }
-
-        private IEnumerable <User> GetUsers()
-        {
-            return new List<User>
-            {
-                new User {Id = 1, Name = "UserName1"},
-                new User {Id = 2, Name = "UserName2"}
-            };
-        }
-
     }
 }
