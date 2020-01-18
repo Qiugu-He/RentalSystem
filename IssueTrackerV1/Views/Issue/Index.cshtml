@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<IssueTrackerV1.Models.Issue>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Issues";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,6 +9,7 @@
     <thead>
         <tr>
             <th>Issue</th>
+            <th>Genre</th>
         </tr>
     </thead>
     
@@ -16,7 +17,8 @@
         @foreach (var issue in Model)
         {
             <tr>
-                <td>@issue.Name</td>
+                <td>@Html.ActionLink(issue.Name, "Details", "Issue", new {id = issue.Id}, null)</td>
+                <td>@issue.Genre.Name</td>
             </tr>
         }
     </tbody>

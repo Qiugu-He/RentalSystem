@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using IssueTrackerV1.Models;
@@ -10,20 +11,38 @@ namespace IssueTrackerV1.Controllers
 {
     public class IssueController : Controller
     {
-        public ViewResult Index()
-        {
-            var issue = GetIssues();
+        private ApplicationDbContext _context;
 
-            return View(issue);
+        public IssueController()
+        {
+            _context = new ApplicationDbContext();
         }
 
-        private IEnumerable<Issue> GetIssues()
+        protected override void Dispose(bool disposing)
         {
-            return new List<Issue>
+            _context.Dispose();
+        }
+
+
+        public ViewResult Index()
+        {
+            var issues = _context.Issues.Include(m => m.Genre).ToList();
+
+
+            return View(issues);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var issue = _context.Issues.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+
+            if (issue == null)
             {
-                new Issue {Id = 1, Name = "To-Do-1"},
-                new Issue {Id = 2, Name = "To-Do-2"}
-            };
+                return HttpNotFound();
+            }
+
+            return View(issue);
+
         }
     }
 }
