@@ -26,12 +26,21 @@ namespace IssueTrackerV1.Controllers
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new NewUserViewModel
+            var viewModel = new UserFormViewModel
             {
                 MembershipTypes = membershipTypes
             };
 
-            return View(viewModel);
+            return View("UserForm", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(User user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "User");
         }
 
         public ViewResult Index()
@@ -51,6 +60,23 @@ namespace IssueTrackerV1.Controllers
             }
 
             return View(user);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var user = _context.Users.SingleOrDefault(c => c.Id == id);
+
+            if (user == null)
+                return HttpNotFound();
+
+            var viewModel = new UserFormViewModel
+            {
+                User = user,
+                MembershipTypes = _context.MembershipTypes.ToList()
+
+            };
+
+            return View("UserForm", viewModel);
         }
     }
 }

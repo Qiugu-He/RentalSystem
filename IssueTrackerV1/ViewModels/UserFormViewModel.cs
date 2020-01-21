@@ -7,7 +7,7 @@ using IssueTrackerV1.Models;
 
 namespace IssueTrackerV1.ViewModels
 {
-    public class NewUserViewModel
+    public class UserFormViewModel
     {
         public IEnumerable <MembershipType> MembershipTypes { get; set; }
         public User User { get; set; }

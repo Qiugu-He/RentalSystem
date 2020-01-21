@@ -1,4 +1,4 @@
-﻿@model IssueTrackerV1.ViewModels.NewUserViewModel
+﻿@model IssueTrackerV1.ViewModels.UserFormViewModel
 @{
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,7 +15,12 @@
 
     <div class=" form-group">
         @Html.LabelFor(m => m.User.Birthdate)
-        @Html.TextBoxFor(m => m.User.Birthdate, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.User.Birthdate, "{0:d MMM yyy}", new { @class = "form-control" })
+    </div>
+
+    <div class=" form-group">
+        @Html.LabelFor(m => m.User.MembershipTypeId)
+        @Html.DropDownListFor(m => m.User.MembershipTypeId, new SelectList (Model.MembershipTypes, "Id", "Name"), "Select Membership Type",new { @class = "form-control" })
     </div>
 
     <div class=" checkbox">
@@ -24,9 +29,6 @@
         </label>
     </div>
 
-    <div class=" form-group">
-        @Html.LabelFor(m => m.User.MembershipTypeId)
-        @Html.DropDownListFor(m => m.User.MembershipTypeId, new SelectList (Model.MembershipTypes, "Id", "Name"), "Select Membership Type",new { @class = "form-control" })
-    </div>
+    <button type ="submit" class ="btn btn-primary"> Save</button>
 }
 
