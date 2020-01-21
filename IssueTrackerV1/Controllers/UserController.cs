@@ -35,9 +35,20 @@ namespace IssueTrackerV1.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(User user)
-        {
-            _context.Users.Add(user);
+        public ActionResult Save(User user)
+        {   
+            if (user.Id == 0)
+                _context.Users.Add(user);
+            else
+            {
+                var userInDb = _context.Users.Single(u => u.Id == user.Id);
+
+                userInDb.Name = user.Name;
+                userInDb.Birthdate = user.Birthdate;
+                userInDb.MembershipTypeId = user.MembershipTypeId;
+                userInDb.IsSubscribedToNewsletter = user.IsSubscribedToNewsletter;
+            }
+
             _context.SaveChanges();
 
             return RedirectToAction("Index", "User");
