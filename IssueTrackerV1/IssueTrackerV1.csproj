@@ -233,6 +233,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\IssueFormViewModel.cs" />
     <Compile Include="ViewModels\UserFormViewModel.cs" />
     <Compile Include="ViewModels\RandomIssueViewModel.cs" />
   </ItemGroup>
@@ -299,6 +300,8 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Issue\Details.cshtml" />
     <Content Include="Views\User\UserForm.cshtml" />
+    <Content Include="Views\Issue\IssueForm.cshtml" />
+    <Content Include="Views\Issue\UserForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
