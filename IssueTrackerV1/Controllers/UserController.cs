@@ -27,7 +27,8 @@ namespace IssueTrackerV1.Controllers
         {
             var membershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new UserFormViewModel
-            {
+            {   
+                User = new User(),
                 MembershipTypes = membershipTypes
             };
 
@@ -36,13 +37,23 @@ namespace IssueTrackerV1.Controllers
 
         [HttpPost]
         public ActionResult Save(User user)
-        {   
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new UserFormViewModel
+                {
+                    User = user,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+
+                return View("UserForm", viewModel);
+            }
+
             if (user.Id == 0)
                 _context.Users.Add(user);
             else
             {
                 var userInDb = _context.Users.Single(u => u.Id == user.Id);
-
                 userInDb.Name = user.Name;
                 userInDb.Birthdate = user.Birthdate;
                 userInDb.MembershipTypeId = user.MembershipTypeId;
@@ -57,6 +68,7 @@ namespace IssueTrackerV1.Controllers
         public ViewResult Index()
         {   
             var users = _context.Users.Include(c => c.MembershipType).ToList();
+
             return View(users);
         }
 

@@ -24,7 +24,7 @@ namespace IssueTrackerV1
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap_lumen.css",
-                      "~/Content/site.css"));
+                      "~/Content/Site.css"));
         }
     }
 }

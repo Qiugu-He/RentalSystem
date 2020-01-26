@@ -4,32 +4,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New User</h2>
+<h2>New Customer</h2>
 
-@using (@Html.BeginForm("Save", "User"))
+@using (Html.BeginForm("Save", "User"))
 {
-    <div class=" form-group">
+    @Html.ValidationSummary(true, "Please fix the following errors.")
+    <div class="form-group">
         @Html.LabelFor(m => m.User.Name)
         @Html.TextBoxFor(m => m.User.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.User.Name)
     </div>
-
-    <div class=" form-group">
-        @Html.LabelFor(m => m.User.Birthdate)
-        @Html.TextBoxFor(m => m.User.Birthdate, "{0:d MMM yyy}", new { @class = "form-control" })
-    </div>
-
-    <div class=" form-group">
+    <div class="form-group">
         @Html.LabelFor(m => m.User.MembershipTypeId)
-        @Html.DropDownListFor(m => m.User.MembershipTypeId, new SelectList (Model.MembershipTypes, "Id", "Name"), "Select Membership Type",new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.User.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.User.MembershipTypeId)
     </div>
-
-    <div class=" checkbox">
+    <div class="form-group">
+        @Html.LabelFor(m => m.User.Birthdate)
+        @Html.TextBoxFor(m => m.User.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.User.Birthdate)
+    </div>
+    <div class="checkbox">
         <label>
-            @Html.CheckBoxFor(m => m.User.IsSubscribedToNewsletter) Suscribed to Newletter?
+            @Html.CheckBoxFor(m => m.User.IsSubscribedToNewsletter) Subscribed to Newsletter?
         </label>
     </div>
-
     @Html.HiddenFor(m => m.User.Id)
-    <button type ="submit" class ="btn btn-primary"> Save</button>
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
 }
 
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
