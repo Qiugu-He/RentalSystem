@@ -51,9 +51,8 @@ namespace IssueTrackerV1.Controllers
             if (issue == null)
                 return HttpNotFound();
 
-            var viewModel = new IssueFormViewModel
+            var viewModel = new IssueFormViewModel (issue)
             {
-                Issue = issue,
                 Genres = _context.Genres.ToList()
             };
 
@@ -63,6 +62,16 @@ namespace IssueTrackerV1.Controllers
         [HttpPost]
         public ActionResult Save(Issue issue)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new IssueFormViewModel(issue)
+                {
+                    Genres = _context.Genres.ToList()
+                };
+
+                return View("IssueForm", viewModel);
+            }
+
             if (issue.Id == 0)
             {
                 issue.DateAdded = DateTime.Now;

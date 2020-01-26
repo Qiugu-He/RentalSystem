@@ -27,6 +27,7 @@ namespace IssueTrackerV1.Models
         public DateTime ReleaseDate { get; set; }
         
         [Display(Name = "Number In Stack")]
+        [Range(1, 20)]
         public byte NumberInStack { get; set; }
     }
 }
