@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
+using IssueTrackerV1.Dtos;
 using IssueTrackerV1.Models;
 
 namespace IssueTrackerV1.Controllers.Api
@@ -18,38 +20,41 @@ namespace IssueTrackerV1.Controllers.Api
         }
 
         // GET /api/users
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<UserDto> GetUsers()
         {
-            return _context.Users.ToList();
+            return _context.Users.ToList().Select(Mapper.Map<User, UserDto>);
         }
 
         // GET /api/users/1
-        public User GetUser(int id)
+        public UserDto GetUser(int id)
         {
             var user = _context.Users.SingleOrDefault(u => u.Id == id);
 
             if (user == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return user;
+            return Mapper.Map<User, UserDto>(user);
         }
 
         // POST /api/users
         [HttpPost]
-        public User CreateUser(User user)
+        public UserDto CreateUser(UserDto userDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
+            var user = Mapper.Map<UserDto, User>(userDto);
             _context.Users.Add(user);
             _context.SaveChanges();
 
-            return user;
+            userDto.Id = user.Id;
+
+            return userDto;
         }
 
         //PUT /api/users/1
         [HttpPut]
-        public void UpdateUser(int id, User user)
+        public void UpdateUser(int id, UserDto userDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -59,10 +64,7 @@ namespace IssueTrackerV1.Controllers.Api
             if (userInDb == null)
                 throw new HttpResponseException(HttpStatusCode. NotFound);
 
-            userInDb.Name = user.Name;
-            userInDb.Birthdate = user.Birthdate;
-            userInDb.IsSubscribedToNewsletter = user.IsSubscribedToNewsletter;
-            userInDb.MembershipTypeId = user.MembershipTypeId;
+            Mapper.Map(userDto, userInDb);
 
             _context.SaveChanges();
         }
