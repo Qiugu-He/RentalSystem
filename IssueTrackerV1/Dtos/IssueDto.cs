@@ -4,10 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using IssueTrackerV1.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace IssueTrackerV1.Dtos
 {
-    public class UserDto
+    public class IssueDto
     {
         public int Id { get; set; }
 
@@ -15,11 +17,14 @@ namespace IssueTrackerV1.Dtos
         [StringLength(255)]
         public string Name { get; set; }
 
-        public bool IsSubscribedToNewsletter { get; set; }
+        [Required]
+        public byte GenreId { get; set; }
 
-        public byte MembershipTypeId { get; set; }
+        public DateTime DateAdded { get; set; }
 
-       // [Min18YearsIfMember]
-        public DateTime? Birthdate { get; set; }
+        public DateTime ReleaseDate { get; set; }
+
+        [Range(1, 20)]
+        public byte NumberInStack { get; set; }
     }
 }

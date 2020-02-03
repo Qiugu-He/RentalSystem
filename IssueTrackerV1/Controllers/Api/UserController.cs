@@ -26,22 +26,22 @@ namespace IssueTrackerV1.Controllers.Api
         }
 
         // GET /api/users/1
-        public UserDto GetUser(int id)
+        public IHttpActionResult GetUser(int id)
         {
             var user = _context.Users.SingleOrDefault(u => u.Id == id);
 
             if (user == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
-            return Mapper.Map<User, UserDto>(user);
+            return Ok(Mapper.Map<User, UserDto>(user));
         }
 
         // POST /api/users
         [HttpPost]
-        public UserDto CreateUser(UserDto userDto)
+        public IHttpActionResult CreateUser(UserDto userDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var user = Mapper.Map<UserDto, User>(userDto);
             _context.Users.Add(user);
@@ -49,37 +49,41 @@ namespace IssueTrackerV1.Controllers.Api
 
             userDto.Id = user.Id;
 
-            return userDto;
+            return Created(new Uri(Request.RequestUri + "/" + user.Id), userDto);
         }
 
         //PUT /api/users/1
         [HttpPut]
-        public void UpdateUser(int id, UserDto userDto)
+        public IHttpActionResult UpdateUser(int id, UserDto userDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var userInDb = _context.Users.SingleOrDefault(u => u.Id == id);
 
             if (userInDb == null)
-                throw new HttpResponseException(HttpStatusCode. NotFound);
+                return NotFound();
 
             Mapper.Map(userDto, userInDb);
 
             _context.SaveChanges();
+
+            return Ok();
         }
 
         //DELETE /api/users/1
         [HttpDelete]
-        public void DeleteUser(int id)
+        public IHttpActionResult DeleteUser(int id)
         {
-            var userInDb = _context.Users.SingleOrDefault(u => u.Id == id);
+            var userInDb = _context.Users.SingleOrDefault(c => c.Id == id);
 
             if (userInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             _context.Users.Remove(userInDb);
             _context.SaveChanges();
+
+            return Ok();
         }
     }
 }
