@@ -5,57 +5,67 @@
 }
 
 <h2>Users</h2>
-@if (!Model.Any())
-{
-    <p>Dont have user assgined yet!</p>
-}
-else
-{
-    <table id ="users" class="table table-bordered table-hover">
-        <thead>
-        <tr>
-            <th>User</th>
-            <th>Membership Type</th>
-            <th>Delete</th>
+<table id ="users" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>User</th>
+        <th>Membership Type</th>
+        <th>Delete</th>
 
-        </tr>
-        </thead>
+    </tr>
+    </thead>
         
-        <tbody>
-            @foreach (var user in Model)
-            {
-            <tr>
-                <td>@Html.ActionLink(user.Name, "Edit", "User", new { id = user.Id }, null)
-                <td>@user.MembershipType.Name</td>
-                <td>
-                    <button data-user-id ="@user.Id" class ="btn-link js-delete">Delete</button>
-                </td>
-
-            </tr>
-            }
-        </tbody>
-    </table>
-}
+    <tbody>
+    </tbody>
+</table>
 
 @section scripts
 {
     <script>
         $(document).ready(function() {
-            $("#users").on("click",".js-delete" ,function() {
-                var button = $(this);
+            $("#users").DataTable({
+                ajax: {
+                    url: "/api/User",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function(data, type, user) {
+                            return "<a href='/user/edit/" + user.id + "'>" + user.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "id",
+                        render: function(data) {
+                            return "<button class = 'btn-link js-delete' data-user-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
 
-                bootbox.confirm("Are you sure you want to delete this customer?", function(result) {
-                    if (result) {
-                        $.ajax({
-                            url: "/api/user/" + $(this).attr("data-user-id"),
-                            method: "DELETE",
-                            success: function() {
-                                button.parents("tr").remove();
+            });
+
+            $("#users").on("click",
+                ".js-delete",
+                function() {
+                    var button = $(this);
+
+                    bootbox.confirm("Are you sure you want to delete this customer?",
+                        function(result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/api/user/" + $(this).attr("data-user-id"),
+                                    method: "DELETE",
+                                    success: function() {
+                                        button.parents("tr").remove();
+                                    }
+                                });
                             }
                         });
-                    }
                 });
-            });
         });
     </script>
 }

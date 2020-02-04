@@ -66,10 +66,8 @@ namespace IssueTrackerV1.Controllers
         }
 
         public ViewResult Index()
-        {   
-            var users = _context.Users.Include(c => c.MembershipType).ToList();
-
-            return View(users);
+        {
+            return View();
         }
 
 
