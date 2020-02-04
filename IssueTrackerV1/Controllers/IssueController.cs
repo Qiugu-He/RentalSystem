@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Entity;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IssueTrackerV1.Models;
@@ -26,10 +26,7 @@ namespace IssueTrackerV1.Controllers
 
         public ViewResult Index()
         {
-            var issues = _context.Issues.Include(m => m.Genre).ToList();
-
-
-            return View(issues);
+            return View();
         }
 
         public ViewResult New()

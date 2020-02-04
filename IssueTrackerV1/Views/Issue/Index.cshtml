@@ -9,23 +9,66 @@
     @Html.ActionLink("New Issue", "New", "Issue", null, new{@class= "btn btn-primary"})
 </p>
 
-<table class=" table table-bordered table-hover">
+<table id ="issues" class=" table table-bordered table-hover">
     <thead>
-        <tr>
-            <th>Issue</th>
-            <th>Genre</th>
-        </tr>
+    <tr>
+        <th>Issue</th>
+        <th>Genre</th>
+        <th>Delete</th>
+    </tr>
     </thead>
     
-    <tbody>
-        @foreach (var issue in Model)
-        {
-            <tr>
-                <td>@Html.ActionLink(issue.Name, "Edit", "Issue", new {id = issue.Id}, null)</td>
-                <td>@issue.Genre.Name</td>
-            </tr>
-        }
-    </tbody>
+    <tbody></tbody>
 
 </table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            var table = $("#issues").DataTable({
+                ajax: {
+                    url: "/api/Issue",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function(data, type, issue) {
+                            return "<a href='/Issue/Edit/" + issue.id + "'>" + issue.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "genre.name"
+                    },
+                    {
+                        data: "id",
+                        render: function(data) {
+                            return "<button class = 'btn-link js-delete' data-issue-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#issues").on("click",
+                ".js-delete",
+                function() {
+                    var button = $(this);
+
+                    bootbox.confirm("Are you sure you want to delete this issue?",
+                        function(result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/api/Issue/" + button.attr("data-issue-id"),
+                                    method: "DELETE",
+                                    success: function() {
+                                        table.row(button.parents("tr")).remove().draw();
+                                    }
+                                });
+                            }
+                        });
+                });
+        });
+    </script>
+}
 

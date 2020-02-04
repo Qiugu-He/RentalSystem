@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -21,7 +22,10 @@ namespace IssueTrackerV1.Controllers.Api
         //GET/Issue
         public IEnumerable<IssueDto> GetIssues()
         {
-            return _context.Issues.ToList().Select(Mapper.Map<Issue, IssueDto>);
+            return _context.Issues
+                .Include(m =>m.Genre)
+                .ToList()
+                .Select(Mapper.Map<Issue, IssueDto>);
         }
 
 
@@ -38,17 +42,17 @@ namespace IssueTrackerV1.Controllers.Api
 
         //Post
         [HttpPost]
-        public IHttpActionResult CreateIssue(IssueDto movieDto)
+        public IHttpActionResult CreateIssue(IssueDto issueDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var movie = Mapper.Map<IssueDto, Issue>(movieDto);
-            _context.Issues.Add(movie);
+            var issueInDb = Mapper.Map<IssueDto, Issue>(issueDto);
+            _context.Issues.Add(issueInDb);
             _context.SaveChanges();
 
-            movieDto.Id = movie.Id;
-            return Created(new Uri(Request.RequestUri + "/" + movie.Id), movieDto);
+            issueDto.Id = issueInDb.Id;
+            return Created(new Uri(Request.RequestUri + "/" + issueInDb.Id), issueDto);
         }
 
         //PUT /api/issue
