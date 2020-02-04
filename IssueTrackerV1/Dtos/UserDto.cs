@@ -19,7 +19,9 @@ namespace IssueTrackerV1.Dtos
 
         public byte MembershipTypeId { get; set; }
 
-       // [Min18YearsIfMember]
+        public MembershipTypeDto MembershipType { get; set; }
+
+        // [Min18YearsIfMember]
         public DateTime? Birthdate { get; set; }
     }
 }

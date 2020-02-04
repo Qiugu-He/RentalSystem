@@ -17,6 +17,7 @@ namespace IssueTrackerV1.App_Start
             //Domain to Dto
             Mapper.CreateMap<User, UserDto>();
             Mapper.CreateMap<Issue, IssueDto>();
+            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
 
             //Dto to Domain
             Mapper.CreateMap<UserDto, User>()

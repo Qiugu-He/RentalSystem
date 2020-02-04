@@ -5,6 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
+
+using System.Data.Entity;
+
 using IssueTrackerV1.Dtos;
 using IssueTrackerV1.Models;
 
@@ -20,9 +23,14 @@ namespace IssueTrackerV1.Controllers.Api
         }
 
         // GET /api/users
-        public IEnumerable<UserDto> GetUsers()
+        public IHttpActionResult GetUsers()
         {
-            return _context.Users.ToList().Select(Mapper.Map<User, UserDto>);
+            var userDtos = _context.Users
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<User, UserDto>);
+
+            return Ok(userDtos);
         }
 
         // GET /api/users/1
