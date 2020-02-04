@@ -15,15 +15,14 @@
     </tr>
     </thead>
         
-    <tbody>
-    </tbody>
+    <tbody></tbody>
 </table>
 
 @section scripts
 {
     <script>
         $(document).ready(function() {
-            $("#users").DataTable({
+            var table = $("#users").DataTable({
                 ajax: {
                     url: "/api/User",
                     dataSrc: ""
@@ -41,7 +40,7 @@
                     {
                         data: "id",
                         render: function(data) {
-                            return "<button class = 'btn-link js-delete' data-user-id=" + data + ">Delete</button>";
+                            return "<button class = 'btn-link js-delete' data-user-id="+data+">Delete</button>";
                         }
                     }
                 ]
@@ -57,10 +56,10 @@
                         function(result) {
                             if (result) {
                                 $.ajax({
-                                    url: "/api/user/" + $(this).attr("data-user-id"),
+                                    url: "/api/User/" + button.attr("data-user-id"),
                                     method: "DELETE",
                                     success: function() {
-                                        button.parents("tr").remove();
+                                        table.row(button.parents("tr")).remove().draw();
                                     }
                                 });
                             }
