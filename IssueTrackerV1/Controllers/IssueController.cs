@@ -26,9 +26,14 @@ namespace IssueTrackerV1.Controllers
 
         public ViewResult Index()
         {
-            return View();
+            if (User.IsInRole(RoleName.CanManageIssues))
+                return View("List");
+
+            return View("ReadOnlyList");
         }
 
+
+        [Authorize(Roles = RoleName.CanManageIssues)]
         public ViewResult New()
         {
             var genres = _context.Genres.ToList();
@@ -41,6 +46,8 @@ namespace IssueTrackerV1.Controllers
             return View("IssueForm", viewModel);
         }
 
+
+        [Authorize(Roles = RoleName.CanManageIssues)]
         public ActionResult Edit(int id)
         {
             var issue = _context.Issues.SingleOrDefault(c => c.Id == id);

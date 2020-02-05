@@ -243,6 +243,10 @@
     <Compile Include="Migrations\202001180444338_PopulateGenres.Designer.cs">
       <DependentUpon>202001180444338_PopulateGenres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002052228184_SeedUsers.cs" />
+    <Compile Include="Migrations\202002052228184_SeedUsers.Designer.cs">
+      <DependentUpon>202002052228184_SeedUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -251,6 +255,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfMember.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -491,13 +496,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Issue\Random.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
-    <Content Include="Views\Issue\Index.cshtml" />
+    <Content Include="Views\Issue\List.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Issue\Details.cshtml" />
     <Content Include="Views\User\UserForm.cshtml" />
     <Content Include="Views\Issue\IssueForm.cshtml" />
     <Content Include="Views\Issue\UserForm.cshtml" />
+    <Content Include="Views\Issue\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -551,6 +557,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001180444338_PopulateGenres.resx">
       <DependentUpon>202001180444338_PopulateGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002052228184_SeedUsers.resx">
+      <DependentUpon>202002052228184_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
