@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace IssueTrackerV1.Controllers
-{
+{   
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()
