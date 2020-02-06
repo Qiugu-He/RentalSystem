@@ -54,9 +54,9 @@ namespace IssueTrackerV1
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "122353862441713",
+               appSecret: "8fe53a0c77557ede87289d017dc14537");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
