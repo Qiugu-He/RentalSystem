@@ -29,5 +29,7 @@ namespace IssueTrackerV1.Models
         [Display(Name = "Number In Stack")]
         [Range(1, 20)]
         public byte NumberInStack { get; set; }
+
+        public byte NumberAvaliable { get; set; }
     }
 }

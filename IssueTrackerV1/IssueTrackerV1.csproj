@@ -198,14 +198,17 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\IssueController.cs" />
+    <Compile Include="Controllers\Api\NewRentalsController.cs" />
     <Compile Include="Controllers\Api\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IssueController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RentalController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\IssueDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
+    <Compile Include="Dtos\NewRentalDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
@@ -271,6 +274,14 @@
     <Compile Include="Migrations\202002061632054_AddPhoneToApplicationUser.Designer.cs">
       <DependentUpon>202002061632054_AddPhoneToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002092141040_AddedRental.cs" />
+    <Compile Include="Migrations\202002092141040_AddedRental.Designer.cs">
+      <DependentUpon>202002092141040_AddedRental.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002092211347_AddNumberAvaliableToIssue.cs" />
+    <Compile Include="Migrations\202002092211347_AddNumberAvaliableToIssue.Designer.cs">
+      <DependentUpon>202002092211347_AddNumberAvaliableToIssue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -279,6 +290,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfMember.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -528,6 +540,7 @@
     <Content Include="Views\Issue\IssueForm.cshtml" />
     <Content Include="Views\Issue\UserForm.cshtml" />
     <Content Include="Views\Issue\ReadOnlyList.cshtml" />
+    <Content Include="Views\Rental\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -590,6 +603,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002061632054_AddPhoneToApplicationUser.resx">
       <DependentUpon>202002061632054_AddPhoneToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002092141040_AddedRental.resx">
+      <DependentUpon>202002092141040_AddedRental.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002092211347_AddNumberAvaliableToIssue.resx">
+      <DependentUpon>202002092211347_AddNumberAvaliableToIssue.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
