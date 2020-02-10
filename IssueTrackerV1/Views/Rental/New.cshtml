@@ -8,15 +8,26 @@
 <form>
     <div class="form-group">
         <lable>User</lable>
-        <input id ="user" type="text" value="" class=" form-control"/>
+        <div class="tt-container">
+            <input id="user" type="text" value="" class=" form-control" />
+        </div>
+        
     </div>
 
     <div class="form-group">
         <lable>Issue</lable>
-        <input id ="issue" type="text" value=" " class=" form-control" />
+        <div class="tt-container">
+            <input id="issue" type="text" value=" " class=" form-control" />
+        </div>
     </div>
     
-    <button class=" btn btn-primary">Submit</button>
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <ul id ="issues" class ="list-group"></ul>
+        </div>
+    </div>
+
+    <button class="btn btn-primary">Submit</button>
 
 </form>
 
@@ -25,7 +36,9 @@
     <script>
         $(document).ready(function() {
 
-            var vm = {};
+            var vm = {
+                issueIds: []
+            };
 
             var users = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -44,7 +57,7 @@
                     name: 'users',
                     display: 'name',
                     source: users
-                }).on("typeahead: select", function(e, user) {
+                }).on("typeahead:select", function(e, user) {
                     vm.userId = user.id;
             });
 
@@ -65,8 +78,12 @@
                     name: 'issues',
                     display: 'name',
                     source: issues
-                }).on("typeahead: select", function(e, user) {
-                    vm.userId = user.id;
+                }).on("typeahead:select", function(e, issue) {
+                    $("#issues").append("<li class ='list-group-item'>" + issue.name + "</li>");
+
+                    $("#issue").typeahead("val", "");
+
+                    vm.issueIds.push(issue.id);
             });
         });
     </script>
