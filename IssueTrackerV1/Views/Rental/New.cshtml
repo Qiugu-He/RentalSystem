@@ -9,7 +9,7 @@
     <div class="form-group">
         <lable>User</lable>
         <div class="tt-container">
-            <input id="user" type="text" value="" class=" form-control" />
+            <input id="user" name="user" data-rule-validUser="ture" required type="text" value="" class=" form-control" />
         </div>
         
     </div>
@@ -17,7 +17,7 @@
     <div class="form-group">
         <lable>Issue</lable>
         <div class="tt-container">
-            <input id="issue" type="text" value=" " class=" form-control" />
+            <input id="issue" name="issue" data-rule-atLeastOneIssue="true" type="text" value="" class=" form-control" />
         </div>
     </div>
     
@@ -33,6 +33,8 @@
 
 @section scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
+
     <script>
         $(document).ready(function() {
 
@@ -88,20 +90,38 @@
                     vm.issueIds.push(issue.id);
                 });
 
-            $("#newRental").submit(function(e) {
-                e.preventDefault();
+            $.validator.addMethod("validUser", function() {
+                return vm.userId && vm.issueId !== 0;
+            }, "Please select a valid user.");
 
-                $.ajax({
-                        url: "/api/newRentals",
-                        method: "post",
-                        data: vm
-                    })
-                    .done(function() {
-                        toastr.success("Assignment Issues are successfully record");
-                    })
-                    .fail(function() {
-                        toastr.error("Error has occured");
-                    });
+            $.validator.addMethod("atLeastOneIssue", function () {
+                return vm.issueIds.length >0;
+            }, "Please select at least one Issue.");
+
+            var validator = $("#newRental").validate({
+                submitHandler: function () {
+
+                    $.ajax({
+                            url: "/api/newRentals",
+                            method: "post",
+                            data: vm
+                        })
+                        .done(function() {
+                            toastr.success("Assignment Issues are successfully record");
+
+                            $("#user").typeahead("val", "");
+                            $("#issue").typeahead("val", "");
+                            $("#issues").empty();
+
+                            vm = { issueIds: [] };
+                            validator.resetForm();
+                        })
+                        .fail(function() {
+                            toastr.error("Error has occured");
+                        });
+
+                    return false;
+                }
             });
         });
     </script>
