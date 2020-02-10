@@ -8,16 +8,67 @@
 <form>
     <div class="form-group">
         <lable>User</lable>
-        <input type="text" value=" " class=" form-control" />
+        <input id ="user" type="text" value="" class=" form-control"/>
     </div>
 
     <div class="form-group">
         <lable>Issue</lable>
-        <input type="text" value=" " class=" form-control" />
+        <input id ="issue" type="text" value=" " class=" form-control" />
     </div>
     
     <button class=" btn btn-primary">Submit</button>
-    
 
 </form>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+
+            var vm = {};
+
+            var users = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/user?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#user').typeahead({
+                    minLength: 2,
+                    highlight: true
+                },
+                {
+                    name: 'users',
+                    display: 'name',
+                    source: users
+                }).on("typeahead: select", function(e, user) {
+                    vm.userId = user.id;
+            });
+
+            var issues = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/Issue?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#issue').typeahead({
+                    minLength: 2,
+                    highlight: true
+                },
+                {
+                    name: 'issues',
+                    display: 'name',
+                    source: issues
+                }).on("typeahead: select", function(e, user) {
+                    vm.userId = user.id;
+            });
+        });
+    </script>
+}
 

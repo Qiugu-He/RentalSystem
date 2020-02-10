@@ -12,8 +12,10 @@ namespace IssueTrackerV1
                             "~/Scripts/jquery-{version}.js",
                             "~/Scripts/bootstrap.js",
                             "~/scripts/bootbox.js",
+                            "~/script/respond.js",
                             "~/scripts/datatables/jquery.datatables.js",
-                            "~/scripts/datatables/datatables.bootstrap.js"
+                            "~/scripts/datatables/datatables.bootstrap.js",
+                            "~/scripts/typeahead.bundle.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -28,6 +30,7 @@ namespace IssueTrackerV1
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap_lumen.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
+                      "~/Content/typeahead.css",
                       "~/Content/Site.css"));
         }
     }
