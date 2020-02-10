@@ -5,7 +5,7 @@
 
 <h2>New Rental Form</h2>
 
-<form>
+<form id ="newRental">
     <div class="form-group">
         <lable>User</lable>
         <div class="tt-container">
@@ -57,9 +57,10 @@
                     name: 'users',
                     display: 'name',
                     source: users
-                }).on("typeahead:select", function(e, user) {
+                }).on("typeahead:select",
+                function(e, user) {
                     vm.userId = user.id;
-            });
+                });
 
             var issues = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -78,12 +79,29 @@
                     name: 'issues',
                     display: 'name',
                     source: issues
-                }).on("typeahead:select", function(e, issue) {
+                }).on("typeahead:select",
+                function(e, issue) {
                     $("#issues").append("<li class ='list-group-item'>" + issue.name + "</li>");
 
                     $("#issue").typeahead("val", "");
 
                     vm.issueIds.push(issue.id);
+                });
+
+            $("#newRental").submit(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                        url: "/api/newRentals",
+                        method: "post",
+                        data: vm
+                    })
+                    .done(function() {
+                        toastr.success("Assignment Issues are successfully record");
+                    })
+                    .fail(function() {
+                        toastr.error("Error has occured");
+                    });
             });
         });
     </script>

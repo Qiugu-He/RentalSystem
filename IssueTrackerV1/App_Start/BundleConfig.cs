@@ -15,6 +15,7 @@ namespace IssueTrackerV1
                             "~/script/respond.js",
                             "~/scripts/datatables/jquery.datatables.js",
                             "~/scripts/datatables/datatables.bootstrap.js",
+                            "~/Scripts/toastr.js", 
                             "~/scripts/typeahead.bundle.js"
                         ));
 
@@ -31,6 +32,7 @@ namespace IssueTrackerV1
                       "~/Content/bootstrap_lumen.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                       "~/Content/typeahead.css",
+                      "~/Content/toastr.css",
                       "~/Content/Site.css"));
         }
     }
