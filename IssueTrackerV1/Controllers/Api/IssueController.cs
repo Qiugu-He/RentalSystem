@@ -20,10 +20,17 @@ namespace IssueTrackerV1.Controllers.Api
         }
 
         //GET/Issue
-        public IEnumerable<IssueDto> GetIssues()
+        public IEnumerable<IssueDto> GetIssues(string query = null)
         {
-            return _context.Issues
+            var issuesQuery = _context.Issues
                 .Include(m =>m.Genre)
+                .Where(m => m.NumberAvaliable >0);
+
+            if(!String.IsNullOrWhiteSpace(query))
+                issuesQuery = issuesQuery.Where(m => m.Name.Contains(query));
+                
+            
+            return issuesQuery
                 .ToList()
                 .Select(Mapper.Map<Issue, IssueDto>);
         }

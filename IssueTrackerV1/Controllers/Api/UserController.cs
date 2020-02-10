@@ -23,10 +23,15 @@ namespace IssueTrackerV1.Controllers.Api
         }
 
         // GET /api/users
-        public IHttpActionResult GetUsers()
+        public IHttpActionResult GetUsers(string query = null)
         {
-            var userDtos = _context.Users
-                .Include(c => c.MembershipType)
+            var usersQuery = _context.Users
+                .Include(c => c.MembershipType);
+
+            if (!String.IsNullOrWhiteSpace(query))
+                usersQuery = usersQuery.Where(c => c.Name.Contains(query));
+
+            var userDtos = usersQuery
                 .ToList()
                 .Select(Mapper.Map<User, UserDto>);
 
