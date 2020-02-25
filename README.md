@@ -22,4 +22,4 @@ To be noted here, the data that API received or returned is using Domain Transfe
 
 # Performance:
 - Each realtions in DB is set with a primary key, an indexes is added on the column of the table that are accessed frequently (e.g. Items table, user table), so SQL query are executed faster.
-- disabled Session
+-Disabled Session
