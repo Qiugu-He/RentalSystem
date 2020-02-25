@@ -23,3 +23,17 @@ To be noted here, the data that API received or returned is using Domain Transfe
 # Performance:
 - Each realtions in DB is set with a primary key, an indexes is added on the column of the table that are accessed frequently (e.g. Items table, user table), so SQL query are executed faster.
 - Disabled Session
+
+# App demo:
+- Resigter & login
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/login.png" alt="alt text" width="60%" height="60%">
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/register.png" alt="alt text" width="60%" height="60%">
+
+- Itmes avaliable in store
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/Items.png" alt="alt text" width="60%" height="60%">
+
+- User Rental form:
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/Rental1.png" alt="alt text" width="60%" height="60%">
+
+
+
