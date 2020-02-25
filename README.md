@@ -32,8 +32,11 @@ To be noted here, the data that API received or returned is using Domain Transfe
 - Itmes avaliable in store
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/Items.png" alt="alt text" width="60%" height="60%">
 
-- User Rental form:
-<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/Rental1.png" alt="alt text" width="60%" height="60%">
+- Member/User list
 
+
+- User Rental form
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/Rental1.png" alt="alt text" width="60%" height="60%">
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/Rental2.png" alt="alt text" width="60%" height="60%">
 
 
