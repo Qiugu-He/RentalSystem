@@ -38,6 +38,8 @@ To be noted here, the data that API received or returned is using Domain Transfe
 
 - User Rental form
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/Rental1.png" alt="alt text" width="60%" height="60%">
+
+- Rental recored
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/Rental2.png" alt="alt text" width="60%" height="60%">
 
 
