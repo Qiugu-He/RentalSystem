@@ -4,16 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Issues</h2>
+<h2>Items</h2>
 <p>
-    @Html.ActionLink("New Issue", "New", "Issue", null, new{@class= "btn btn-primary"})
+    @Html.ActionLink("New Item", "New", "Issue", null, new{@class= "btn btn-primary"})
 </p>
 
 <table id ="issues" class=" table table-bordered table-hover">
     <thead>
     <tr>
-        <th>Issue</th>
-        <th>Genre</th>
+        <th>Item</th>
+        <th>Category</th>
         <th>Delete</th>
     </tr>
     </thead>
