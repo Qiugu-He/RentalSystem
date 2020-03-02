@@ -25,21 +25,32 @@ To be noted here, the data that API received or returned is using **Domain Trans
 - Disabled Session
 
 # App demo:
-- Resigter & login
+- **Resigter & login**
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/login.png" alt="alt text" width="60%" height="60%">
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/register.png" alt="alt text" width="60%" height="60%">
 
-- Itmes avaliable in store
+- **Itmes avaliable in store**
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/Items.png" alt="alt text" width="60%" height="60%">
 
-- Member/User list
+- **Member/User list**
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/User.png" alt="alt text" width="60%" height="60%">
 
 
-- User Rental form
+- **User Rental form**
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/Rental1.png" alt="alt text" width="60%" height="60%">
 
-- Rental recored
+- **Rental recored**
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/Rental2.png" alt="alt text" width="60%" height="60%">
+
+- **Database tables**
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/DB1.png" alt="alt text" width="60%" height="60%">
+
+- **Database user and Items records**
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/DB2.png" alt="alt text" width="60%" height="60%">
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/DB3.png" alt="alt text" width="60%" height="60%">
+
+- **Database rental records**
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/DB4.png" alt="alt text" width="60%" height="60%">
+
 
 
