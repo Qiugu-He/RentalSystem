@@ -54,8 +54,10 @@ To be noted here, the data that API received or returned is using **Domain Trans
 
 - **API testing: GET**
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/GET.png" alt="alt text" width="30%" height="30%">
+
 - **API testing: POST**
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/PUT.png" alt="alt text" width="30%" height="30%">
+
 - **API testing: Delete**
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/Delete.png" alt="alt text" width="30%" height="30%">
 
