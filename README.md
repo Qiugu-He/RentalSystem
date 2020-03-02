@@ -46,11 +46,11 @@ To be noted here, the data that API received or returned is using **Domain Trans
 <img src="https://github.com/Qiugu-He/RentalSystem/blob/master/DB1.png" alt="alt text" width="30%" height="30%">
 
 - **Database user and Items records**
-<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/DB2.png" alt="alt text" width="60%" height="60%">
-<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/DB3.png" alt="alt text" width="60%" height="60%">
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/DB2.png" alt="alt text" width="30%" height="30%">
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/DB3.png" alt="alt text" width="30%" height="30%">
 
 - **Database rental records**
-<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/DB4.png" alt="alt text" width="60%" height="60%">
+<img src="https://github.com/Qiugu-He/RentalSystem/blob/master/DB4.png" alt="alt text" width="30%" height="30%">
 
 
 
